@@ -5,19 +5,19 @@ FindX brings the power of VS Code's search bar to any webpage. Highlight all mat
 ## Screenshots
 
 **Basic search — highlights all matches instantly**
-![Basic search](screenshots/01-basic-search.png)
+![Basic search](https://raw.githubusercontent.com/sulmanazhar2/findx-chrome-extension/master/screenshots/01-basic-search.png)
 
 **Whole word match — "web" won't match "website" or "webkit"**
-![Whole word match](screenshots/02-whole-word.png)
+![Whole word match](https://raw.githubusercontent.com/sulmanazhar2/findx-chrome-extension/master/screenshots/02-whole-word.png)
 
 **Regex search — find all years from the 1900s with `\b19\d{2}\b`**
-![Regex search](screenshots/03-regex-years.png)
+![Regex search](https://raw.githubusercontent.com/sulmanazhar2/findx-chrome-extension/master/screenshots/03-regex-years.png)
 
 **Case sensitive — "ECMAScript" won't match "ecmascript"**
-![Case sensitive](screenshots/04-case-sensitive.png)
+![Case sensitive](https://raw.githubusercontent.com/sulmanazhar2/findx-chrome-extension/master/screenshots/04-case-sensitive.png)
 
 **No results state**
-![No results](screenshots/05-no-results.png)
+![No results](https://raw.githubusercontent.com/sulmanazhar2/findx-chrome-extension/master/screenshots/05-no-results.png)
 
 ---
 
