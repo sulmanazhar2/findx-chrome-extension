@@ -285,17 +285,34 @@ if (!window.__tsp_initialized) {
     catch { return null; }
   }
 
+  function isVisible(el) {
+    if (!el) return false;
+    // Walk up the DOM tree checking visibility
+    let cur = el;
+    while (cur && cur !== document.body) {
+      const style = getComputedStyle(cur);
+      if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') return false;
+      // Check for off-screen / zero-size hiding patterns
+      if (cur.offsetWidth === 0 && cur.offsetHeight === 0 && style.overflow === 'hidden') return false;
+      // Check aria-hidden
+      if (cur.getAttribute('aria-hidden') === 'true') return false;
+      cur = cur.parentElement;
+    }
+    return true;
+  }
+
   function getTextNodes() {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         const p = node.parentElement;
         if (!p) return NodeFilter.FILTER_REJECT;
         const tag = p.tagName;
-        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' || tag === 'TEXTAREA')
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'OPTION')
           return NodeFilter.FILTER_REJECT;
         if (p.closest('#' + CONTAINER_ID)) return NodeFilter.FILTER_REJECT;
         if (p.classList && p.classList.contains(HIGHLIGHT_CLASS)) return NodeFilter.FILTER_REJECT;
         if (node.textContent.trim().length === 0) return NodeFilter.FILTER_REJECT;
+        if (!isVisible(p)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
